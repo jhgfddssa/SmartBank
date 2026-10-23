@@ -1,0 +1,706 @@
+
+/* SmartBank Customer Dashboard */
+
+
+/* Dashboard header layout */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+/* SmartBank brand */
+.dashboard-brand {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Compact Logout button */
+.dashboard-header .logout-button {
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 0;
+  padding: 10px 20px;
+  margin: 0;
+  border: none;
+  border-radius: 10px;
+  background: #2050df;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.dashboard-header .logout-button:hover {
+  background: #163fbd;
+  transform: translateY(-1px);
+}
+
+/* Keep the header comfortable on small screens */
+@media (max-width: 480px) {
+  .dashboard-header {
+    gap: 10px;
+  }
+
+  .dashboard-header .logout-button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}
+
+
+.dashboard {
+  min-height: 100vh;
+  background: #f4f7fb;
+  color: #1f2937;
+}
+
+.dashboard .dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 32px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.dashboard .dashboard-header h1 {
+  margin: 0;
+  text-align: left;
+  font-size: 24px;
+  color: #111827;
+}
+
+.dashboard .dashboard-header p {
+  margin-top: 6px;
+  color: #6b7280;
+}
+
+.dashboard main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 24px;
+}
+
+.dashboard .balance-card {
+  padding: 30px;
+  margin-bottom: 25px;
+  border-radius: 18px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #1d4ed8, #2563eb, #3b82f6);
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.18);
+}
+
+.dashboard .balance-card p {
+  margin-bottom: 12px;
+  color: #dbeafe;
+  font-size: 14px;
+}
+
+.dashboard .balance-card h2 {
+  margin: 0 0 18px;
+  font-size: 36px;
+}
+
+.dashboard .actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.dashboard .actions button {
+  min-height: 58px;
+  padding: 14px;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #1d4ed8;
+  border: 1px solid #dbeafe;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard .actions button:hover {
+  background: #eff6ff;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 18px rgba(37, 99, 235, 0.1);
+}
+
+.dashboard .transactions {
+  padding: 24px;
+  margin-bottom: 30px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.dashboard .transactions h2 {
+  margin: 0 0 20px;
+  text-align: left;
+  font-size: 21px;
+  color: #111827;
+}
+
+.dashboard .transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 17px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dashboard .transaction-item:last-child {
+  border-bottom: none;
+}
+
+.dashboard .transaction-item p {
+  margin-top: 5px;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.dashboard .transaction-item > strong {
+  color: #111827;
+  white-space: nowrap;
+}
+
+.dashboard .success-message {
+  margin-bottom: 20px;
+  padding: 13px 16px;
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.dashboard .error-message {
+  margin-bottom: 20px;
+  padding: 13px 16px;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+@media (max-width: 700px) {
+  .dashboard .dashboard-header {
+    padding: 18px;
+  }
+
+  .dashboard .dashboard-header h1 {
+    font-size: 20px;
+  }
+
+  .dashboard main {
+    padding: 20px 14px;
+  }
+
+  .dashboard .balance-card {
+    padding: 24px 20px;
+  }
+
+  .dashboard .balance-card h2 {
+    font-size: 30px;
+  }
+
+  .dashboard .actions {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard .transactions {
+    padding: 18px;
+  }
+
+  .dashboard .transaction-item {
+    align-items: flex-start;
+  }
+}
+
+/* Transaction search and filter */
+.dashboard .transaction-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.dashboard .transaction-heading h2 {
+  margin-bottom: 6px;
+}
+
+.dashboard .transaction-heading p {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.dashboard .transaction-count {
+  padding: 7px 12px;
+  border-radius: 20px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dashboard .transaction-filters {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.dashboard .transaction-filters input,
+.dashboard .transaction-filters select {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+  background: #fff;
+  color: #1f2937;
+  font-size: 13px;
+}
+
+.dashboard .transaction-filters .clear-filters-button,
+.dashboard .clear-filters-button {
+  width: auto;
+  padding: 10px 14px;
+  border-radius: 9px;
+  background: #e5e7eb;
+  color: #374151;
+  font-size: 13px;
+}
+
+.dashboard .transaction-filters .clear-filters-button:hover,
+.dashboard .clear-filters-button:hover {
+  background: #d1d5db;
+}
+
+.dashboard .transaction-item {
+  width: 100%;
+  text-align: left;
+  background: #fff;
+  color: #1f2937;
+  cursor: pointer;
+}
+
+.dashboard .transaction-item:hover {
+  background: #f8fafc;
+}
+
+.dashboard .transaction-main-info {
+  min-width: 0;
+}
+
+.dashboard .transaction-main-info strong {
+  text-transform: capitalize;
+}
+
+.dashboard .transaction-main-info p {
+  overflow-wrap: anywhere;
+}
+
+.dashboard .transaction-main-info small {
+  display: block;
+  margin-top: 5px;
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.dashboard .transaction-amount-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.dashboard .transaction-status {
+  padding: 4px 8px;
+  border-radius: 20px;
+  background: #f3f4f6;
+  color: #4b5563;
+  font-size: 11px;
+  text-transform: capitalize;
+}
+
+.dashboard .transaction-status.success,
+.dashboard .transaction-status.completed,
+.dashboard .transaction-status.approved {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.dashboard .transaction-status.failed,
+.dashboard .transaction-status.rejected {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.dashboard .transaction-message {
+  padding: 25px 12px;
+  color: #6b7280;
+  text-align: center;
+}
+
+/* Transaction details modal */
+.dashboard .transaction-details-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(3px);
+}
+
+.dashboard .transaction-details-modal {
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+}
+
+.dashboard .transaction-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 22px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dashboard .transaction-details-header h2 {
+  margin: 0 0 6px;
+  text-align: left;
+  font-size: 21px;
+}
+
+.dashboard .transaction-details-header p {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.dashboard .transaction-details-header .transaction-close-button {
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.dashboard .transaction-details-body {
+  padding: 22px;
+}
+
+.dashboard .transaction-detail-amount {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  padding: 22px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  background: #eff6ff;
+}
+
+.dashboard .transaction-detail-amount span {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.dashboard .transaction-detail-amount strong {
+  color: #1d4ed8;
+  font-size: 30px;
+}
+
+.dashboard .transaction-detail-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 13px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dashboard .transaction-detail-row:last-child {
+  border-bottom: none;
+}
+
+.dashboard .transaction-detail-row span {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.dashboard .transaction-detail-row strong {
+  max-width: 60%;
+  color: #111827;
+  font-size: 13px;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.dashboard .transaction-details-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 22px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.dashboard .transaction-details-footer button {
+  width: auto;
+  padding: 10px 20px;
+  background: #2563eb;
+}
+
+@media (max-width: 800px) {
+  .dashboard .transaction-filters {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dashboard .transaction-filters input[type="search"] {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 500px) {
+  .dashboard .transaction-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .dashboard .transaction-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard .transaction-filters input[type="search"] {
+    grid-column: auto;
+  }
+
+  .dashboard .transaction-filters .clear-filters-button {
+    width: 100%;
+  }
+
+  .dashboard .transaction-item {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .dashboard .transaction-amount-info {
+    flex-shrink: 0;
+  }
+
+  .dashboard .transaction-details-overlay {
+    padding: 12px;
+  }
+
+  .dashboard .transaction-details-header,
+  .dashboard .transaction-details-body {
+    padding: 16px;
+  }
+
+  .dashboard .transaction-detail-row {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .dashboard .transaction-detail-row strong {
+    max-width: 100%;
+    text-align: left;
+  }
+}
+
+/* Account Statement */
+.dashboard .account-statement {
+  padding: 24px;
+  margin-bottom: 30px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.dashboard .statement-heading {
+  margin-bottom: 22px;
+}
+
+.dashboard .statement-heading h2 {
+  margin: 0 0 8px;
+  text-align: left;
+  font-size: 21px;
+  color: #111827;
+}
+
+.dashboard .statement-heading p {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.dashboard .statement-filters {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: end;
+  margin-bottom: 24px;
+}
+
+.dashboard .statement-date-field label {
+  display: block;
+  margin-bottom: 8px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.dashboard .statement-date-field input {
+  width: 100%;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+  background: #fff;
+  color: #111827;
+}
+
+.dashboard .statement-filters button {
+  width: 100%;
+  min-height: 44px;
+  padding: 12px 16px;
+  border-radius: 9px;
+  font-size: 14px;
+}
+
+.dashboard .statement-reset-button {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+}
+
+.dashboard .statement-reset-button:hover {
+  background: #e5e7eb;
+}
+
+.dashboard .statement-download-button {
+  background: #2563eb;
+  color: #fff;
+}
+
+.dashboard .statement-download-button:hover {
+  background: #1d4ed8;
+}
+
+.dashboard .statement-download-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.dashboard .statement-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.dashboard .statement-summary-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #f9fafb;
+}
+
+.dashboard .statement-summary-card span {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.dashboard .statement-summary-card strong {
+  overflow-wrap: anywhere;
+  font-size: 23px;
+  color: #111827;
+}
+
+.dashboard .statement-summary-card.money-in {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.dashboard .statement-summary-card.money-in strong {
+  color: #15803d;
+}
+
+.dashboard .statement-summary-card.money-out {
+  background: #fff7ed;
+  border-color: #fed7aa;
+}
+
+.dashboard .statement-summary-card.money-out strong {
+  color: #c2410c;
+}
+
+.dashboard .statement-note {
+  margin-top: 18px;
+  color: #6b7280;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.dashboard .statement-warning {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #fffbeb;
+  color: #92400e;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.dashboard .statement-empty {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 10px;
+  background: #f9fafb;
+  color: #6b7280;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .dashboard .account-statement {
+    padding: 18px;
+  }
+
+  .dashboard .statement-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard .statement-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard .statement-summary-card {
+    padding: 16px;
+  }
+
+  .dashboard .statement-summary-card strong {
+    font-size: 21px;
+  }
+}
