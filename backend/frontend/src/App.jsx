@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import Dashboard from "./Dashboard";
 import AdminDashboard from "./AdminDashboard";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function App() {
   const [email, setEmail] = useState("");
@@ -23,12 +24,12 @@ function App() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        {
-          email,
-          password,
-        }
-      );
+  `${API_URL}/api/auth/login`,
+  {
+    email,
+    password,
+  }
+);
 
       console.log("Login successful:", response.data);
 
