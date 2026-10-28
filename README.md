@@ -1,162 +1,143 @@
-# SmartBank — Full-Stack Banking Web Application
+# SmartBank — Online Banking Web Application
 
-SmartBank is a full-stack banking web application built as a portfolio project to demonstrate web development skills, REST API development, database integration, authentication, and banking-related workflows.
+SmartBank is a full-stack online banking demo application built to demonstrate web development skills, REST API integration, authentication, and database management.
 
-The application includes customer banking features and an administrative dashboard for managing banking operations.
+## Live Demo
+
+- **Frontend:** https://smart-bank-six-chi.vercel.app/
+- **Backend API:** https://smartbank-5vmz.onrender.com
+
+> SmartBank is a portfolio and educational project. It is not a real banking service. Do not use real banking credentials or sensitive financial information.
 
 ## Features
 
-### Customer Features
-- **User Authentication** — Register and log in securely.
-- **Customer Dashboard** — View account information and recent transactions.
-- **Money Transfers** — Transfer money between accounts.
-- **Payments** — Process payment transactions.
-- **Transaction History** — Review previous transactions.
-- **Loan Management** — Apply for loans and view submitted loan applications.
-
-### Admin Features
-- **Admin Dashboard** — Access administrative banking functions.
-- **Customer Management** — Manage customer accounts.
-- **Account Controls** — Freeze and unfreeze customer accounts.
-- **Loan Management** — Review and process loan applications.
-- **Transaction Management** — View and manage transaction records.
-- **Audit Logs** — Review recorded administrative activities.
+- User registration and login
+- JWT-based authentication
+- Account information and balance display
+- Money transfers between accounts
+- Payment transactions
+- Transaction history
+- Loan applications and loan status tracking
+- Admin features for account management
+- Account freeze and unfreeze functionality
 
 ## Tech Stack
 
-| Area | Technologies |
-|---|---|
-| Frontend | React.js, Vite, JavaScript, HTML, CSS |
-| Backend | Node.js, Express.js |
-| Database | MongoDB, Mongoose |
-| Authentication | JSON Web Tokens (JWT) |
-| Password Security | bcryptjs |
-| API | REST API |
-| Development Tools | Git, GitHub, npm |
+### Frontend
+- React
+- Vite
+- JavaScript
+- CSS
 
-## Project Structure
+### Backend
+- Node.js
+- Express.js
+- REST API
+- JSON Web Tokens (JWT)
 
-```text
-SmartBank/
-├── .gitignore
-└── backend/
-    ├── config/
-    ├── controllers/
-    ├── middleware/
-    ├── models/
-    ├── routes/
-    ├── server.js
-    ├── package.json
-    └── frontend/
-        ├── public/
-        ├── src/
-        ├── package.json
-        └── vite.config.js
-```
+### Database
+- MongoDB
+- MongoDB Atlas
+
+### Deployment
+- Vercel — Frontend
+- Render — Backend
 
 ## Getting Started
 
 ### Prerequisites
 
-Make sure you have installed:
-
 - Node.js and npm
-- MongoDB or a MongoDB Atlas database
+- MongoDB database
 - Git
 
-### 1. Clone the Repository
+### Installation
 
-```bash
-git clone https://github.com/jhgfddssa/SmartBank.git
-cd SmartBank
-```
+1. Clone the repository:
 
-### 2. Set Up the Backend
+   ```bash
+   git clone https://github.com/jhgfddssa/SmartBank.git
+   ```
 
-```bash
-cd backend
-npm install
-```
+2. Navigate to the backend directory:
 
-Create a `.env` file in the `backend` directory and configure the environment variables required by your backend application.
+   ```bash
+   cd SmartBank/backend
+   ```
 
-Example:
+3. Install backend dependencies:
 
-```env
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_secure_jwt_secret
-```
+   ```bash
+   npm install
+   ```
 
-**Important:** Use the exact variable names expected by your backend code. Never commit real database credentials, JWT secrets, or passwords to GitHub.
+4. Configure your environment variables in a `.env` file.
 
-Start the backend server:
+   ```env
+   PORT=5000
+   MONGO_URI=your_mongodb_connection_string
+   JWT_SECRET=your_jwt_secret
+   ```
 
-```bash
-npm run dev
-```
+5. Start the backend:
 
-The backend is configured to run on port `5000` by default, subject to your environment configuration.
+   ```bash
+   npm run dev
+   ```
 
-### 3. Set Up the Frontend
+### Frontend Setup
 
-Open a new terminal from the project root:
+1. Open a second terminal.
+2. Navigate to the frontend directory:
 
-```bash
-cd backend/frontend
-npm install
-npm run dev
-```
+   ```bash
+   cd SmartBank/backend/frontend
+   ```
 
-Open the local URL displayed by Vite in your terminal, usually:
+3. Install dependencies:
 
-`http://localhost:5173`
+   ```bash
+   npm install
+   ```
 
-### 4. Connect the Frontend and Backend
+4. Create a `.env` file:
 
-Ensure that the frontend API configuration points to the correct backend URL and that the backend CORS configuration allows requests from the frontend origin.
+   ```env
+   VITE_API_URL=http://localhost:5000
+   ```
 
-## API Overview
+5. Start the frontend:
 
-The backend provides REST API endpoints for authentication, transactions, loans, and administrative operations.
+   ```bash
+   npm run dev
+   ```
 
-| Feature | Endpoint |
-|---|---|
-| Register | `POST /api/auth/register` |
-| Login | `POST /api/auth/login` |
-| Money Transfer | `POST /api/transactions/transfer` |
-| Payment | `POST /api/transactions/payment` |
-| Transaction History | `GET /api/transactions/history` |
-| Apply for a Loan | `POST /api/loans/apply` |
-| View My Loans | `GET /api/loans/my-loans` |
+## API Endpoints
 
-Protected endpoints require authentication. Actual request bodies, response formats, and authorization requirements depend on the implementation.
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/auth/register` | Register a new user |
+| POST | `/api/auth/login` | Authenticate a user |
+| POST | `/api/transactions/transfer` | Transfer money |
+| POST | `/api/transactions/payment` | Process a payment |
+| GET | `/api/transactions/history` | Retrieve transaction history |
+| POST | `/api/loans/apply` | Apply for a loan |
+| GET | `/api/loans/my-loans` | Retrieve the user's loans |
 
-## Security Notes
+Protected endpoints require a valid authentication token. Admin endpoints require appropriate administrator permissions.
 
-SmartBank is an educational portfolio project and is not intended for real-world banking or production financial transactions.
+## Security
 
-Security-related features include password hashing, JWT-based authentication, protected routes, role-based authorization, and account freeze controls.
+- Password hashing
+- JWT-based authentication
+- Protected routes and role-based authorization
+- Account freeze checks
+- Environment variables for sensitive configuration
 
-Before production use, the application would require additional security reviews, comprehensive testing, transaction integrity controls, monitoring, and appropriate financial and regulatory compliance measures.
+## Project Purpose
 
-## Future Improvements
+This project was developed as a practical portfolio project to demonstrate full-stack development, API integration, database operations, authentication, and deployment.
 
-- Automated unit and integration testing
-- Improved input validation and error handling
-- Enhanced fraud detection and transaction controls
-- Responsive UI and accessibility improvements
-- Deployment with production-grade configuration
-- Continuous integration and automated security checks
+## Disclaimer
 
-## Author
-
-**Seam Piseth**
-
-Computer Science Graduate | Aspiring Web Developer
-
-GitHub: [jhgfddssa](https://github.com/jhgfddssa)
-
-## License
-
-No license has been specified yet. All rights are reserved by the author unless a license is added to this repository.
+SmartBank is a demonstration project for educational and portfolio purposes only. It is not intended for real financial transactions.
