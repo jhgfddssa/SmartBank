@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import "./AdminCustomer.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function AdminCustomer() {
   // ========================================
@@ -35,7 +36,7 @@ function AdminCustomer() {
       const token = localStorage.getItem("token");
 
       const response = await axios.get(
-        "http://localhost:5000/api/admin/customers",
+        `${API_URL}/api/admin/customers`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -74,7 +75,7 @@ function AdminCustomer() {
       const token = localStorage.getItem("token");
 
       await axios.put(
-        `http://localhost:5000/api/admin/freeze/${accountNumber}`,
+        `${API_URL}/api/admin/freeze/${accountNumber}`,
         {},
         {
           headers: {
@@ -113,7 +114,7 @@ function AdminCustomer() {
       const token = localStorage.getItem("token");
 
       await axios.put(
-        `http://localhost:5000/api/admin/unfreeze/${accountNumber}`,
+        `${API_URL}/api/admin/unfreeze/${accountNumber}`,
         {},
         {
           headers: {
@@ -146,7 +147,7 @@ function AdminCustomer() {
       const token = localStorage.getItem("token");
 
       const response = await axios.get(
-        `http://localhost:5000/api/admin/transactions/${accountNumber}`,
+        `${API_URL}/api/admin/transactions/${accountNumber}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

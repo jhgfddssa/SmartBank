@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import "./AdminAuditLog.css";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function AdminAuditLog() {
   // ==============================
   // STATE
@@ -23,7 +25,7 @@ function AdminAuditLog() {
       const token = localStorage.getItem("token");
 
       const response = await axios.get(
-        "http://localhost:5000/api/admin/audit-logs",
+        `${API_URL}/api/admin/audit-logs`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

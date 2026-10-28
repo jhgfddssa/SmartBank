@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Loan({ onClose, onSuccess }) {
   const [amount, setAmount] = useState("");
@@ -32,7 +33,7 @@ function Loan({ onClose, onSuccess }) {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "http://localhost:5000/api/loans/apply",
+      `${API_URL}/api/loans/apply`,
         {
           amount: Number(amount),
           purpose,

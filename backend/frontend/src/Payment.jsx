@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Payment({ onClose, onSuccess }) {
   const [merchant, setMerchant] = useState("");
@@ -29,7 +30,7 @@ function Payment({ onClose, onSuccess }) {
 
       // Send payment request to Backend
       const response = await axios.post(
-        "http://localhost:5000/api/transactions/payment",
+  `${API_URL}/api/transactions/payment`,
         {
           merchant,
           amount: Number(amount),

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Transfer({ onClose, onSuccess }) {
   const [receiverAccount, setReceiverAccount] = useState("");
@@ -26,17 +27,17 @@ function Transfer({ onClose, onSuccess }) {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "http://localhost:5000/api/transactions/transfer",
-        {
-          receiverAccount,
-          amount: Number(amount),
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+  `${API_URL}/api/transactions/transfer`,
+  {
+    receiverAccount,
+    amount: Number(amount),
+  },
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
 
       console.log("Transfer successful:", response.data);
 

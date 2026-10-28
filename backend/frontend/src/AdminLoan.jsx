@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import "./AdminLoan.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function AdminLoan() {
   const [loans, setLoans] = useState([]);
@@ -22,7 +23,7 @@ function AdminLoan() {
       const token = localStorage.getItem("token");
 
       const response = await axios.get(
-        "http://localhost:5000/api/admin/loans",
+        `${API_URL}/api/admin/loans`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -70,7 +71,7 @@ function AdminLoan() {
       const token = localStorage.getItem("token");
 
       const response = await axios.put(
-        `http://localhost:5000/api/admin/loans/${loanId}/approve`,
+        `${API_URL}/api/admin/loans/${loanId}/approve`,
         {},
         {
           headers: {
@@ -123,7 +124,7 @@ function AdminLoan() {
       const token = localStorage.getItem("token");
 
       const response = await axios.put(
-        `http://localhost:5000/api/admin/loans/${loanId}/reject`,
+        `${API_URL}/api/admin/loans/${loanId}/reject`,
         {},
         {
           headers: {

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+
 import {
   PieChart,
   Pie,
@@ -10,6 +11,7 @@ import {
 } from "recharts";
 
 import "./AdminOverview.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function AdminOverview() {
   const [customers, setCustomers] = useState([]);
@@ -32,13 +34,13 @@ function AdminOverview() {
       const [customerResponse, loanResponse] =
         await Promise.all([
           axios.get(
-            "http://localhost:5000/api/admin/customers",
-            { headers }
+  `${API_URL}/api/admin/customers`,
+  { headers }
           ),
           axios.get(
-            "http://localhost:5000/api/admin/loans",
-            { headers }
-          ),
+  `${API_URL}/api/admin/loans`,
+  { headers }
+),
         ]);
 
       setCustomers(customerResponse.data);

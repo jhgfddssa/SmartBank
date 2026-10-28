@@ -7,6 +7,7 @@ import Payment from "./Payment";
 import Loan from "./Loan";
 import MyLoans from "./MyLoans";
 import "./Dashboard.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Dashboard() {
   const [user, setUser] = useState(() => {
@@ -47,14 +48,14 @@ function Dashboard() {
 
         const token = localStorage.getItem("token");
 
-        const response = await axios.get(
-          "http://localhost:5000/api/transactions/history",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+            const response = await axios.get(
+        `${API_URL}/api/transactions/history`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
         const data = response.data;
         const list = Array.isArray(data)

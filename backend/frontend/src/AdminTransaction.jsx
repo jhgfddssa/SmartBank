@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import "./AdminTransaction.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function AdminTransaction() {
     const [transactions, setTransactions] = useState([]);
@@ -22,7 +23,7 @@ function AdminTransaction() {
             const token = localStorage.getItem("token");
 
             const response = await axios.get(
-                "http://localhost:5000/api/admin/transactions",
+                `${API_URL}/api/admin/transactions`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
