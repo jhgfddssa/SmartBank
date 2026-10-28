@@ -1,21 +1,25 @@
+
 import { useState } from "react";
 import axios from "axios";
 import Dashboard from "./Dashboard";
 import AdminDashboard from "./AdminDashboard";
+import Register from "./Register";
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showRegister, setShowRegister] = useState(false);
 
   // Check if user is already logged in
   const [loggedIn, setLoggedIn] = useState(
     !!localStorage.getItem("token")
   );
 
+  // Handle login
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -24,14 +28,12 @@ function App() {
 
     try {
       const response = await axios.post(
-  `${API_URL}/api/auth/login`,
-  {
-    email,
-    password,
-  }
-);
-
-      console.log("Login successful:", response.data);
+        `${API_URL}/api/auth/login`,
+        {
+          email,
+          password,
+        }
+      );
 
       // Save JWT token
       localStorage.setItem("token", response.data.token);
@@ -42,46 +44,57 @@ function App() {
         JSON.stringify(response.data.user)
       );
 
-      // Login successful
       setLoggedIn(true);
-
     } catch (error) {
-      console.error(error);
+      console.error("Login error:", error);
 
       if (error.response) {
-        setError(error.response.data.message);
+        setError(
+          error.response.data.message ||
+          "Login failed. Please check your email and password."
+        );
       } else {
-        setError("Cannot connect to server");
+        setError("Cannot connect to server. Please try again.");
       }
     } finally {
       setLoading(false);
     }
   };
 
-  // If already logged in, show Dashboard
+  // Show Dashboard if already logged in
   if (loggedIn) {
-  const user = JSON.parse(localStorage.getItem("user") || "null");
+    const user = JSON.parse(
+      localStorage.getItem("user") || "null"
+    );
 
-  if (user?.role === "admin") {
-    return <AdminDashboard />;
+    if (user?.role === "admin") {
+      return <AdminDashboard />;
+    }
+
+    return <Dashboard />;
   }
 
-  return <Dashboard />;
-}
+  // Show Register page
+  if (showRegister) {
+    return (
+      <Register
+        onBackToLogin={() => {
+          setShowRegister(false);
+          setError("");
+        }}
+      />
+    );
+  }
 
+  // Show Login page
   return (
     <div className="login-page">
       <div className="login-card">
-
-        <div className="logo">
-          🏦
-        </div>
+        <div className="logo">🏦</div>
 
         <h1>SmartBank</h1>
 
-        <p className="subtitle">
-          Welcome back
-        </p>
+        <p className="subtitle">Welcome back</p>
 
         {error && (
           <div className="error-message">
@@ -90,7 +103,6 @@ function App() {
         )}
 
         <form onSubmit={handleLogin}>
-
           <div className="form-group">
             <label>Email</label>
 
@@ -121,14 +133,20 @@ function App() {
           >
             {loading ? "Logging in..." : "Login"}
           </button>
-
         </form>
 
         <p className="register-text">
           Don't have an account?{" "}
-          <span>Register</span>
+          <button
+            type="button"
+            onClick={() => {
+              setShowRegister(true);
+              setError("");
+            }}
+          >
+            Register
+          </button>
         </p>
-
       </div>
     </div>
   );

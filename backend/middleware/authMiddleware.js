@@ -18,7 +18,12 @@ const protect = async (req, res, next) => {
             process.env.JWT_SECRET
         );
 
+        console.log("JWT user ID:", decoded.id);
+        console.log("MongoDB database:", User.db.name);
+
         const user = await User.findById(decoded.id);
+
+        console.log("User found:", !!user);
 
         if (!user) {
             return res.status(401).json({
